@@ -1,0 +1,62 @@
+// Shape.java
+interface Shape {
+    double calculateArea();
+    double calculatePerimeter();
+    void display();
+}
+
+// AbstractPolygon.java
+abstract class AbstractPolygon implements Shape {
+    protected int numSides;
+    protected double sideLength;
+
+    public AbstractPolygon(int numSides, double sideLength) {
+        this.numSides = numSides;
+        this.sideLength = sideLength;
+    }
+
+    // Common method for all polygons
+    @Override
+    public void display() {
+        System.out.println("This is a polygon with " + numSides + " sides");
+        System.out.println("Each side is " + sideLength + " units long");
+        System.out.println("Area: " + calculateArea());
+        System.out.println("Perimeter: " + calculatePerimeter());
+    }
+
+    // Common calculation for regular polygon perimeter
+    @Override
+    public double calculatePerimeter() {
+        return numSides * sideLength;
+    }
+
+    // Abstract method - each specific polygon must implement its own area calculation
+    @Override
+    public abstract double calculateArea();
+}
+
+// Square.java - Concrete Class
+class Square extends AbstractPolygon {
+    public Square(double sideLength) {
+        super(4, sideLength);
+    }
+
+    @Override
+    public double calculateArea() {
+        return sideLength * sideLength;
+    }
+}
+
+// Main.java
+public class Main {
+    public static void main(String[] args) {
+        // Create an instance of our concrete class
+        Square square = new Square(5.0);
+        
+        // Test the implementation
+        System.out.println("=== Square Test ===");
+        square.display();
+    }
+}
+ 
+// 171369 Abdalla Zulekha Omar Musa 
